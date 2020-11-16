@@ -1,14 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
+from django.test import LiveServerTestCase
 
-class VisitorTest(unittest.TestCase):
+class VisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
         # I open to the browser and go to my TO-DO website
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
     
     def tearDown(self):
         self.browser.quit()
@@ -41,7 +41,3 @@ class VisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table('1: Buy a peacock feathers')
         self.add_todo('Buy a new brain')
         self.check_for_row_in_list_table('2: Buy a new brain')
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
