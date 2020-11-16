@@ -38,10 +38,9 @@ class VisitorTest(unittest.TestCase):
 
     def test_todo_can_be_added_correctly(self):
         self.add_todo('Buy a peacock feathers')
-        self.add_todo('Buy a new brain')
-        # checking if the TO-DOs were correcly added
         self.check_for_row_in_list_table('1: Buy a peacock feathers')
-        self.check_for_row_in_list_table('1: Buy a new brain')
+        self.add_todo('Buy a new brain')
+        self.check_for_row_in_list_table('2: Buy a new brain')
 
 
 if __name__ == '__main__':
