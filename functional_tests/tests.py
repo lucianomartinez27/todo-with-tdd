@@ -68,8 +68,9 @@ class VisitorTest(LiveServerTestCase):
         # There are his To-Do's?
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
-        self.assertNotIn('Buy peackock feathers', page_text)
+        self.assertNotIn('Buy peacock feathers', page_text)
         self.assertNotIn('make a fly', page_text)
+
 
         # New user start a new list
         self.add_todo('Buy milk')
@@ -78,8 +79,9 @@ class VisitorTest(LiveServerTestCase):
         # User get his own url
         new_user_url = self.browser.current_url
         self.assertRegex(new_user_url, '/lists/.+')
+        self.assertNotEqual(user_url, new_user_url)
 
         # Checking the list again
         page_text = self.browser.find_element_by_tag_name('body').text
-        self.assertNotIn('Buy a peackock feathers', page_text)
+        self.assertNotIn('Buy a peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
