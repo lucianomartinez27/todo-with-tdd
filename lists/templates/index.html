@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>To-Do lists</title>
+    {% extends 'base.html' %}
   </head>
   <body>
-    <h1>Start a new To-Do list</h1>
-    <form method="POST" action="/lists/new">
+    <h1>{% block header_text %}Start a new To-Do list{% endblock %}</h1>
+    <form
+      method="POST"
+      action="{% block form_action %}/lists/new{% endblock %}"
+    >
       <input
         name="item_text"
         id="id_new_item"
