@@ -2,10 +2,9 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 import time
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-
-class VisitorTest(LiveServerTestCase):
+class VisitorTest(StaticLiveServerTestCase):
     MAX_WAIT = 10
 
     def setUp(self):
@@ -95,6 +94,6 @@ class VisitorTest(LiveServerTestCase):
 
         # checking position after post
         self.add_todo('testing')
-        self.check_for_row_in_list_table('testing')
+        self.check_for_row_in_list_table('1: testing')
         input_box = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(input_box.location['x']+input_box.size['width'] / 2, 512, delta=10)
