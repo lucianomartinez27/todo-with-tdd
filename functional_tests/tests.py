@@ -3,12 +3,17 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+import os
+
 
 class VisitorTest(StaticLiveServerTestCase):
     MAX_WAIT = 10
 
     def setUp(self):
         self.browser = webdriver.Firefox()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'https://' + staging_server
         # I open to the browser and go to my TO-DO website
         self.browser.get(self.live_server_url)
     
