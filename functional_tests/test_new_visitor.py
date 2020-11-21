@@ -33,7 +33,7 @@ class NewVisitorTest(FunctionalTest):
         # New user start a new list
         self.add_todo('Buy milk')
 
-        self.wait_for(lambda: self.check_for_row_in_table('2: Buy milk'))
+        self.wait_for(lambda: self.check_for_row_in_table('1: Buy milk'))
 
         # User get his own url
         new_user_url = self.browser.current_url
