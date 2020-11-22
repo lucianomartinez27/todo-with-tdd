@@ -19,13 +19,11 @@ from django.urls import path
 from lists.views import home_page
 from lists.views import view_list
 from lists.views import new_list
-from lists.views import add_item
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
     path('lists/<list_id>/', view_list, name='view_list'),
-    path('lists/<list_id>/add_item', add_item, name='add_item'),
     path('lists/new', new_list, name='new_list'),
 ]
