@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from django.core.exceptions import ValidationError
 from lists.models import Item, List
 
 
@@ -39,5 +39,9 @@ class ListAndItemModelsTest(TestCase):
         self.client.get("/")
         self.assertEqual(Item.objects.count(), 0)
 
-
-
+    def test_can_not_save_an_empty_item(self):
+        list_ = List.objects.create()
+        item = Item.objects.create(text='', list=list_)
+        with self.assertRaises(ValidationError):
+            item.save()
+            item.full_clean()

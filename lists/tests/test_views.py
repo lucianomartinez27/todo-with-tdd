@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import resolve
+from django.utils.html import escape
 
 from lists.models import List, Item
 from lists.views import home_page
@@ -55,6 +56,7 @@ class ListViewTests(TestCase):
         self.assertRedirects(response, f'/lists/{list_.id}/')
 
 
+
     def test_can_save_a_POST_request_to_an_existing_list(self):
         incorrect_list = List.objects.create()
         correct_list = List.objects.create()
@@ -89,3 +91,21 @@ class HomePageTest(TestCase):
         self.assertTrue(html.endswith('</html>'))
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateNotUsed(response, 'not_existing.html')
+
+
+class NewListTest(TestCase):
+
+    def test_validation_errors_are_sent_back_to_home_page_template(self):
+        response = self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
+        expected_error = escape("You can't have an empty list")
+        self.assertContains(response, expected_error)
+
+    def test_invalid_items_are_not_saved(self):
+        self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(List.objects.count(), 0)
+        self.assertEqual(Item.objects.count(), 0)
+
+
+

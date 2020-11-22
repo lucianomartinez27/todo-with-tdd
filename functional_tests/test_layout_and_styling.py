@@ -11,7 +11,7 @@ class LayoutAndStylingTest(FunctionalTest):
 
         # checking position after post
         self.add_todo('testing')
-        self.check_for_row_in_list_table('1: testing')
+        self.wait_for(lambda: self.check_for_row_in_table('1: testing'))
         input_box = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(input_box.location['x']+input_box.size['width'] / 2, 512, delta=10)
 
