@@ -9,8 +9,8 @@
     <h1>{% block header_text %}Your To-Do list{% endblock %}</h1>
     <form method="POST" action="{% block form_action %}{% url 'view_list' list.id %}{% endblock %}">
       <input
-        name="item_text"
-        id="id_new_item"
+        name="text"
+        id="id_text"
         placeholder="Enter a to-do item"
       />
       {% csrf_token %}

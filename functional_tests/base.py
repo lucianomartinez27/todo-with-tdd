@@ -37,8 +37,9 @@ class FunctionalTest(StaticLiveServerTestCase):
                 time.sleep(0.5)
 
     def add_todo(self, todo_to_add):
-        input_box = self.browser.find_element_by_id('id_new_item')
-        input_box.send_keys(todo_to_add)
-        input_box.send_keys(Keys.ENTER)
+        self.get_item_input_box().send_keys(todo_to_add+Keys.ENTER)
+
+    def get_item_input_box(self):
+        return self.browser.find_element_by_id('id_text')
 
 

@@ -6,20 +6,20 @@ class LayoutAndStylingTest(FunctionalTest):
         self.client.get(self.live_server_url)
         self.browser.set_window_size(1024, 768)
 
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         self.assertAlmostEqual(input_box.location['x']+input_box.size['width'] / 2, 512, delta=10)
 
         # checking position after post
         self.add_todo('testing')
         self.wait_for(lambda: self.check_for_row_in_table('1: testing'))
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         self.assertAlmostEqual(input_box.location['x']+input_box.size['width'] / 2, 512, delta=10)
 
     def test_the_input_box_is_showed_correctly(self):
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         self.assertEqual(
             input_box.get_attribute('placeholder'),
-            'Enter a to-do item'
+            'Enter a new to-do item'
         )
 
     def test_the_title_is_the_corresponding(self):

@@ -12,8 +12,8 @@
       action="{% block form_action %}{% url 'new_list' %}{% endblock %}"
     >
       <input
-        name="item_text"
-        id="id_new_item"
+        name="text"
+        id="id_text"
         placeholder="Enter a to-do item"
       />
       {% csrf_token %}
