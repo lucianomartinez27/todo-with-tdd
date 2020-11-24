@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>To-Do lists</title>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
   </head>
   <body>
     <h1>{% block header_text %}Start a new To-Do list{% endblock %}</h1>
@@ -19,4 +14,3 @@
       {% csrf_token %}
     </form>
   </body>
-</html>

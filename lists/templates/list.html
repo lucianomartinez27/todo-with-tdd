@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>To-Do lists</title>
-    {% extends 'base.html' %}
-  </head>
+{% extends 'base.html' %}
   <body>
     <h1>{% block header_text %}Your To-Do list{% endblock %}</h1>
     <form method="POST" action="{% block form_action %}{% url 'view_list' list.id %}{% endblock %}">
@@ -25,4 +19,3 @@
     </table>
     {% endblock %}
   </body>
-</html>
