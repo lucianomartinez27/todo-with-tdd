@@ -18,9 +18,10 @@ class ItemForm(forms.models.ModelForm):
         self.instance.list = for_list
         return super().save()
 
-class ExistingItemForm(ItemForm):
+
+class ExistingListItemForm(ItemForm):
     def __init__(self, for_list, *args, **kwargs):
-        super(ExistingItemForm, self).__init__(*args, **kwargs)
+        super(ExistingListItemForm, self).__init__(*args, **kwargs)
         self.instance.list = for_list
 
     def validate_unique(self):
@@ -29,3 +30,6 @@ class ExistingItemForm(ItemForm):
         except ValidationError as e:
             e.error_dict = {'text': [DUPLICATE_ITEM_ERROR]}
             self._update_errors(e)
+
+    def save(self):
+        return forms.models.ModelForm.save(self)

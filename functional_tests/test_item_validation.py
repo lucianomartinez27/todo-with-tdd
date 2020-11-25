@@ -14,6 +14,8 @@ class ItemValidationTest(FunctionalTest):
         ))
         self.add_todo('') # blank to-do
         self.wait_for(lambda: self.check_for_row_in_table('1: Buy milk'))
+        self.add_todo('')  # blank to-do
+        self.wait_for(lambda: self.check_for_row_in_table('1: Buy milk'))
         self.wait_for(lambda: self.browser.find_elements_by_css_selector(
             '#id_text:invalid'
         ))
